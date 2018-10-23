@@ -2,4 +2,11 @@ const counterIncrement = () => ({
   type: 'INCREMENT',
 });
 
-export default counterIncrement;
+const counterDecrement = () => ({
+  type: 'DECREMENT',
+});
+
+export {
+  counterIncrement,
+  counterDecrement,
+}

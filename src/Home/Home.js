@@ -12,7 +12,7 @@ import {
   Image,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { counterIncrement } from '../actions';
+import { counterIncrement, counterDecrement } from '../actions';
 
 import styles from './Home.styles';
 import MyCount from '../components/Count/CountComponent';
@@ -91,12 +91,11 @@ class Home extends Component {
   }
 
   render() {
-    const { counterIncrement, counter } = this.props;
+    const { counterIncrement, counterDecrement, counter } = this.props;
 
     // console.log('=>App:Render');
     // console.log('state.count: ', count);
 
-    console.log(this.props);
     return (
       <View style={styles.container}>
         <Image
@@ -104,11 +103,11 @@ class Home extends Component {
           source={{ uri: 'https://cdn-images-1.medium.com/max/1200/1*KANHihva9OdXx2-V5EDn3g.png' }}
         />
         <MyTextInput
-          value={counter.toString()}
+          value={`${counter}`}
           placeholder="Input your value"
           onChangeText={this.onChangeText}
         />
-        <MyCount value={counter.toString()} />
+        <MyCount value={`${counter}`} />
         <View style={styles.buttonContainer}>
           <MyButton
             style={{ flexGrow: 2 }}
@@ -117,7 +116,7 @@ class Home extends Component {
           />
           <MyButton
             style={{ flexGrow: 1 }}
-            onPress={this.subtractCount}
+            onPress={counterDecrement}
             title="Kurang"
           />
         </View>
@@ -132,6 +131,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   counterIncrement,
+  counterDecrement
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (Home);

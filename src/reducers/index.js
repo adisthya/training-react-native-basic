@@ -3,12 +3,17 @@ const initialState = {
 };
 
 const dataReducer = (currentState = initialState, action) => {
-  console.log(action)
+  console.log('ACTION:', action);
   switch (action.type) {
     case 'INCREMENT':
       return {
         ...currentState,
-        counter: Number(currentState.counter) + 1,
+        counter: currentState.counter + 1,
+      };
+    case 'DECREMENT':
+      return {
+        ...currentState,
+        counter: currentState.counter - 1,
       };
     default:
       return currentState;
